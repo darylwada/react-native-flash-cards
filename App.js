@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Form from './views/Form'
+import Nav from './components/Nav'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -20,6 +21,7 @@ export default class App extends React.Component {
     console.log(this.state)
     return (
       <View style={styles.container}>
+        <Nav></Nav>
         <Form savedCards={this.state.savedCards} handleSave={this.handleSave}></Form>
       </View>
     )
