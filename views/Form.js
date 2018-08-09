@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -8,6 +8,13 @@ export default class Form extends React.Component {
       question: '',
       answer: ''
     }
+    this.handleSave = this.handleSave.bind(this)
+  }
+
+  handleSave() {
+    const { question, answer } = this.state
+    const newCard = { question, answer}
+    this.props.handleSave(newCard)
   }
 
   render() {
@@ -28,10 +35,9 @@ export default class Form extends React.Component {
         />
         <View style={styles.button}>
           <Button
-            onPress={event => this.setState({ })}
+            onPress={this.handleSave}
             title="Save"
             color="white"
-            accessibilityLabel="Learn more about this purple button"
           />
         </View>
       </View>
@@ -65,4 +71,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(23,41,61)',
     borderRadius: 5
   }
-});
+})
