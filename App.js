@@ -20,6 +20,10 @@ const Navigator = createMaterialTopTabNavigator(
       indicatorStyle: {
           backgroundColor: 'rgb(108, 209, 165)',
       },
+      tabStyle: {
+        height: 70,
+        paddingTop: 30
+      }
     }
   }
 )

@@ -3,9 +3,9 @@ import { StyleSheet, Text, View } from 'react-native'
 
 export default class List extends React.Component {
   render() {
-    const $cards = this.props.screenProps.savedCards.map(card => {
+    const $cards = this.props.screenProps.savedCards.map((card, i) => {
       return (
-        <View style={styles.card}>
+        <View style={styles.card} key={i}>
           <Text style={styles.question}>{card.question}</Text>
           <Text style={styles.answer}>{card.answer}</Text>
         </View>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: 300,
     minHeight: 100,
-    marginTop: 50,
+    marginTop: 20,
     shadowColor: 'black',
     shadowRadius: 2,
     shadowOpacity: 0.1,
