@@ -1,9 +1,8 @@
 import React from 'react'
 import Form from './views/Form'
 import List from './views/List'
-import { createMaterialTopTabNavigator } from 'react-navigation';
-
-
+import { createMaterialTopTabNavigator } from 'react-navigation'
+import { AsyncStorage } from 'react-native'
 
 const Navigator = createMaterialTopTabNavigator(
   {
@@ -37,8 +36,17 @@ export default class App extends React.Component {
     this.handleSave = this.handleSave.bind(this)
   }
 
+  componentDidMount() {
+    AsyncStorage
+      .getItem('savedCards')
+      .then(savedCards => {
+        if (savedCards) this.setState({ savedCards: JSON.parse(savedCards) })
+      })
+  }
+
   handleSave(newCard) {
     const savedCards = [...this.state.savedCards, newCard]
+    AsyncStorage.setItem('savedCards', JSON.stringify(savedCards))
     this.setState({ savedCards })
   }
 
