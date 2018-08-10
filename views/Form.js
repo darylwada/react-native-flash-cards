@@ -14,7 +14,8 @@ export default class Form extends React.Component {
   handleSave() {
     const { question, answer } = this.state
     const newCard = { question, answer}
-    this.props.handleSave(newCard)
+    // console.log(this.props)
+    this.props.screenProps.handleSave(newCard)
   }
 
   render() {
