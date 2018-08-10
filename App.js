@@ -14,10 +14,10 @@ const Navigator = createMaterialTopTabNavigator(
       activeTintColor: 'rgb(108, 209, 165)',
       inactiveTintColor: 'gray',
       style: {
-          backgroundColor: '#fff',
+          backgroundColor: '#fff'
       },
       indicatorStyle: {
-          backgroundColor: 'rgb(108, 209, 165)',
+          backgroundColor: 'rgb(108, 209, 165)'
       },
       tabStyle: {
         height: 70,
