@@ -28,7 +28,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      savedCards: []
+      savedCards: [{ question: 'hello?', answer: 'hi' }]
     }
     this.handleSave = this.handleSave.bind(this)
   }
