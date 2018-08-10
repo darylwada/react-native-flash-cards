@@ -2,11 +2,24 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Form from './views/Form'
 import Nav from './components/Nav'
+import List from './views/List'
+import { createStackNavigator } from 'react-navigation'
+
+const RootStack = createStackNavigator(
+  {
+    new: Form,
+    list: List,
+  },
+  {
+    initialRouteName: 'new',
+  }
+);
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      view: 'new',
       savedCards: []
     }
     this.handleSave = this.handleSave.bind(this)
@@ -19,12 +32,7 @@ export default class App extends React.Component {
 
   render() {
     console.log(this.state)
-    return (
-      <View style={styles.container}>
-        <Nav></Nav>
-        <Form savedCards={this.state.savedCards} handleSave={this.handleSave}></Form>
-      </View>
-    )
+    return <RootStack />
   }
 }
 

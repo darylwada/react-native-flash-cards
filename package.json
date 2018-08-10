@@ -21,6 +21,18 @@
   "dependencies": {
     "expo": "^27.0.1",
     "react": "16.3.1",
-    "react-native": "~0.55.2"
-  }
+    "react-native": "~0.55.2",
+    "react-navigation": "^2.11.2"
+  },
+  "description": "This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darylwada/react-native-flash-cards.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darylwada/react-native-flash-cards/issues"
+  },
+  "homepage": "https://github.com/darylwada/react-native-flash-cards#readme"
 }

@@ -18,6 +18,9 @@ export default class Form extends React.Component {
   }
 
   render() {
+    // const display = this.props.view === 'new'
+    //   ? styles.container
+    //   : styles.hidden
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Create a Flash Card</Text>
@@ -58,6 +61,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  // hidden: {
+  //   display: none
+  // },
   header: {
     marginBottom: 25
   },
