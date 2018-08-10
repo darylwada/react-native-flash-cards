@@ -1,13 +1,38 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
 import Form from './views/Form'
-import Nav from './components/Nav'
+import List from './views/List'
+import { createMaterialTopTabNavigator } from 'react-navigation';
+
+
+
+const Navigator = createMaterialTopTabNavigator(
+  {
+    'New Card': { screen: Form },
+    Cards: { screen: List },
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: 'rgb(108, 209, 165)',
+      inactiveTintColor: 'gray',
+      style: {
+          backgroundColor: '#fff',
+      },
+      indicatorStyle: {
+          backgroundColor: 'rgb(108, 209, 165)',
+      },
+      tabStyle: {
+        height: 70,
+        paddingTop: 30
+      }
+    }
+  }
+)
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      savedCards: []
+      savedCards: [{ question: 'hello?', answer: 'hi' }]
     }
     this.handleSave = this.handleSave.bind(this)
   }
@@ -20,18 +45,7 @@ export default class App extends React.Component {
   render() {
     console.log(this.state)
     return (
-      <View style={styles.container}>
-        <Nav></Nav>
-        <Form savedCards={this.state.savedCards} handleSave={this.handleSave}></Form>
-      </View>
+      <Navigator screenProps={{ savedCards: this.state.savedCards, handleSave: this.handleSave }} />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'rgb(233, 236, 239)',
-    alignItems: 'center',
-  }
-})
