@@ -15,6 +15,7 @@ export default class Form extends React.Component {
     const { question, answer } = this.state
     const newCard = { question, answer}
     this.props.screenProps.handleSave(newCard)
+    this.props.navigation.navigate('Cards')
   }
 
   render() {
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: 300,
     height: 250,
-    marginTop: 50,
+    marginTop: 20,
     shadowColor: 'black',
     shadowRadius: 2,
     shadowOpacity: 0.1,
