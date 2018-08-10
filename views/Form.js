@@ -15,6 +15,7 @@ export default class Form extends React.Component {
     const { question, answer } = this.state
     const newCard = { question, answer}
     this.props.screenProps.handleSave(newCard)
+    this.props.navigation.navigate('Cards')
   }
 
   render() {

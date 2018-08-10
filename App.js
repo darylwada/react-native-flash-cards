@@ -53,7 +53,11 @@ export default class App extends React.Component {
   render() {
     console.log(this.state)
     return (
-      <Navigator screenProps={{ savedCards: this.state.savedCards, handleSave: this.handleSave }} />
+      <Navigator 
+        screenProps={{ 
+          savedCards: this.state.savedCards, 
+          handleSave: this.handleSave 
+        }} />
     )
   }
 }
