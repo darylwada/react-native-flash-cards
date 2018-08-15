@@ -29,36 +29,36 @@ export default class List extends React.Component {
   render() {
     const { editing } = this.state
     const $cards = this.props.screenProps.savedCards.map((card, i) => {
-      const $question = i === editing
-        ? <TextInput 
-            style={styles.input}
-            onChangeText={question => this.setState({ question })}
-            value={this.state.question}
-          />
-        : <Text style={styles.question}>{card.question}</Text>
-      const $answer = i === editing
-        ? <TextInput 
-            style={styles.input}
-            onChangeText={answer => this.setState({ answer })}
-            value={this.state.answer}
-          />
-        : <Text style={styles.answer}>{card.answer}</Text>
-      const $edit = i === editing
-        ? <View style={styles.button}>
-            <Button
-              onPress={() => this.handleEditSubmit(i)}
-              title="Save"
-              color="white"
+      if (i === editing) {
+        return (
+          <View style={styles.card} key={i}>
+            <TextInput 
+              style={styles.input}
+              onChangeText={question => this.setState({ question })}
+              value={this.state.question}
             />
-          </View>
-        : <TouchableHighlight onPress={() => this.handleEditClick(i)} underlayColor="white">
-           <Text style={styles.edit}>{'\uf044'}</Text>
-          </TouchableHighlight>
+            <TextInput 
+              style={styles.input}
+              onChangeText={answer => this.setState({ answer })}
+              value={this.state.answer}
+            />
+            <View style={styles.button}>
+              <Button
+                onPress={() => this.handleEditSubmit(i)}
+                title="Save"
+                color="white"
+              />
+            </View>
+        </View>
+        )
+      }
       return (
         <View style={styles.card} key={i}>
-          {$question}
-          {$answer}
-          {$edit}
+          <Text style={styles.question}>{card.question}</Text>
+          <Text style={styles.answer}>{card.answer}</Text>
+          <TouchableHighlight onPress={() => this.handleEditClick(i)} underlayColor="white">
+            <Text style={styles.edit}>{'\uf044'}</Text>
+          </TouchableHighlight>
         </View>
       )
     })
