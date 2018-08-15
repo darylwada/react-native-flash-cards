@@ -33,12 +33,12 @@ export default class List extends React.Component {
         return (
           <View style={styles.card} key={i}>
             <TextInput 
-              style={styles.input}
+              style={styles.questionInput}
               onChangeText={question => this.setState({ question })}
               value={this.state.question}
             />
             <TextInput 
-              style={styles.input}
+              style={styles.answerInput}
               onChangeText={answer => this.setState({ answer })}
               value={this.state.answer}
             />
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowRadius: 2,
     shadowOpacity: 0.1,
-    justifyContent: 'center'
+    justifyContent: 'flex-start'
   },
   question: {
     marginTop: 2,
@@ -101,14 +101,26 @@ const styles = StyleSheet.create({
     marginLeft: '90%',
     color: 'rgb(108, 209, 165)'
   },
-  input: {
-    height: 30,
-    width: 250, 
-    borderColor: 'gray', 
+  questionInput: {
+    marginTop: 2,
+    fontSize: 20,
+    paddingHorizontal: 10,
+    borderColor: 'rgb(211,211,211)', 
+    borderWidth: 1
+  },
+  answerInput: {
+    marginTop: 2,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderColor: 'rgb(211,211,211)', 
     borderWidth: 1
   },
   button: {
     marginTop: 20,
+    width: 60,
+    marginLeft: '50%',
+    transform: [{ translateX: -30 }],
+    justifyContent: 'center',
     backgroundColor: 'rgb(23,41,61)',
     borderRadius: 5
   }
