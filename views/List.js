@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, View, TouchableHighlight, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, TouchableHighlight, Button, ScrollView } from 'react-native'
 
 export default class List extends React.Component {
   constructor(props) {
@@ -64,16 +64,16 @@ export default class List extends React.Component {
     })
 
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {$cards}
-      </View>
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: 'rgb(233, 236, 239)',
     alignItems: 'center',
   },
