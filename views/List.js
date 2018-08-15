@@ -1,17 +1,68 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View, TouchableHighlight, Button } from 'react-native'
 
 export default class List extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { 
+      question: '',
+      answer: '',
+      editing: null
+    }
+    this.handleEditClick = this.handleEditClick.bind(this)
+    this.handleEditSubmit = this.handleEditSubmit.bind(this)
+  }
+
+  handleEditClick(i) {
+    if (this.state.editing) return
+    const { question, answer } = this.props.screenProps.savedCards[i]
+    this.setState({ question, answer, editing: i })
+  }
+
+  handleEditSubmit(i) {
+    const { question, answer } = this.state
+    const newCard = { question, answer}
+    this.props.screenProps.handleEditSubmit(newCard, i)
+    this.setState({ editing: null })
+  }
+
   render() {
+    const { editing } = this.state
     const $cards = this.props.screenProps.savedCards.map((card, i) => {
+      const $question = i === editing
+        ? <TextInput 
+            style={styles.input}
+            onChangeText={question => this.setState({ question })}
+            value={this.state.question}
+          />
+        : <Text style={styles.question}>{card.question}</Text>
+      const $answer = i === editing
+        ? <TextInput 
+            style={styles.input}
+            onChangeText={answer => this.setState({ answer })}
+            value={this.state.answer}
+          />
+        : <Text style={styles.answer}>{card.answer}</Text>
+      const $edit = i === editing
+        ? <View style={styles.button}>
+            <Button
+              onPress={() => this.handleEditSubmit(i)}
+              title="Save"
+              color="white"
+            />
+          </View>
+        : <TouchableHighlight onPress={() => this.handleEditClick(i)} underlayColor="white">
+           <Text style={styles.edit}>{'\uf044'}</Text>
+          </TouchableHighlight>
       return (
         <View style={styles.card} key={i}>
-          <Text style={styles.question}>{card.question}</Text>
-          <Text style={styles.answer}>{card.answer}</Text>
-          <Text style={styles.edit}>{'\uf044'}</Text>
+          {$question}
+          {$answer}
+          {$edit}
         </View>
       )
     })
+
     return (
       <View style={styles.container}>
         {$cards}
@@ -49,5 +100,16 @@ const styles = StyleSheet.create({
     fontFamily: 'awesome',
     marginLeft: '90%',
     color: 'rgb(108, 209, 165)'
+  },
+  input: {
+    height: 30,
+    width: 250, 
+    borderColor: 'gray', 
+    borderWidth: 1
+  },
+  button: {
+    marginTop: 20,
+    backgroundColor: 'rgb(23,41,61)',
+    borderRadius: 5
   }
 })
