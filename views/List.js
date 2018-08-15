@@ -8,6 +8,7 @@ export default class List extends React.Component {
         <View style={styles.card} key={i}>
           <Text style={styles.question}>{card.question}</Text>
           <Text style={styles.answer}>{card.answer}</Text>
+          <Text style={styles.edit}>{'\uf044'}</Text>
         </View>
       )
     })
@@ -43,5 +44,10 @@ const styles = StyleSheet.create({
   answer: {
     paddingVertical: 10,
     paddingHorizontal: 15
+  },
+  edit: {
+    fontFamily: 'awesome',
+    marginLeft: '90%',
+    color: 'rgb(108, 209, 165)'
   }
 })
