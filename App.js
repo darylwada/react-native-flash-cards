@@ -3,6 +3,7 @@ import Form from './views/Form'
 import List from './views/List'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import { AsyncStorage } from 'react-native'
+import Expo, { Font } from 'expo'
 
 const Navigator = createMaterialTopTabNavigator(
   {
@@ -31,9 +32,11 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      loading: true,
       savedCards: [{ question: 'hello?', answer: 'hi' }]
     }
     this.handleSave = this.handleSave.bind(this)
+    this.handleEditSubmit = this.handleEditSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -42,6 +45,11 @@ export default class App extends React.Component {
       .then(savedCards => {
         if (savedCards) this.setState({ savedCards: JSON.parse(savedCards) })
       })
+    Font
+      .loadAsync({
+        'awesome': require('./assets/fonts/fontawesome.ttf')
+      })
+      .then(() => this.setState({ loading: false }))
   }
 
   handleSave(newCard) {
@@ -50,13 +58,23 @@ export default class App extends React.Component {
     this.setState({ savedCards })
   }
 
+  handleEditSubmit(editedCard, editIndex) {
+    const savedCards = this.state.savedCards.map((card, index) => {
+      if (index === editIndex) return editedCard
+      return card
+    })
+    this.setState({ savedCards })
+  }
+
   render() {
     console.log(this.state)
+    if (this.state.loading) return <Expo.AppLoading />
     return (
       <Navigator 
         screenProps={{ 
           savedCards: this.state.savedCards, 
-          handleSave: this.handleSave 
+          handleSave: this.handleSave,
+          handleEditSubmit: this.handleEditSubmit
         }} />
     )
   }
