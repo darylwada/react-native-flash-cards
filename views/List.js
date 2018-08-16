@@ -26,6 +26,10 @@ export default class List extends React.Component {
     this.setState({ editing: null })
   }
 
+  handleDeleteClick(i) {
+
+  }
+
   render() {
     const { editing } = this.state
     const $cards = this.props.screenProps.savedCards.map((card, i) => {
@@ -56,9 +60,14 @@ export default class List extends React.Component {
         <View style={styles.card} key={i}>
           <Text style={styles.question}>{card.question}</Text>
           <Text style={styles.answer}>{card.answer}</Text>
-          <TouchableHighlight onPress={() => this.handleEditClick(i)} underlayColor="white">
-            <Text style={styles.edit}>{'\uf044'}</Text>
-          </TouchableHighlight>
+          <View style={styles.buttons}>
+            <TouchableHighlight onPress={() => this.handleEditClick(i)} underlayColor="white">
+              <Text style={styles.edit}>{'\uf044'}</Text>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={() => this.handleDeleteClick(i)} underlayColor="white">
+              <Text style={styles.delete}>{'\uf2ed'}</Text>
+            </TouchableHighlight>
+          </View>
         </View>
       )
     })
@@ -98,7 +107,12 @@ const styles = StyleSheet.create({
   },
   edit: {
     fontFamily: 'awesome',
-    marginLeft: '90%',
+    marginRight: 10,
+    color: 'rgb(108, 209, 165)'
+  },
+  delete: {
+    fontFamily: 'awesome',
+    marginRight: 10,
     color: 'rgb(108, 209, 165)'
   },
   questionInput: {
@@ -123,5 +137,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgb(23,41,61)',
     borderRadius: 5
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
   }
 })
