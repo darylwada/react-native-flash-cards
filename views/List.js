@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import EditCard from '../components/EditCard'
 import ReadCard from '../components/ReadCard'
+import EmptyList from '../components/EmptyList'
 
 export default class List extends React.Component {
   constructor(props) {
@@ -35,16 +36,16 @@ export default class List extends React.Component {
 
   render() {
     const { editing } = this.state
-    const { handleDelete } = this.props.screenProps
-    const $cards = this.props.screenProps.savedCards.map((card, i) => {
+    const { handleDelete, savedCards } = this.props.screenProps
+    const $cards = savedCards.map((card, i) => {
       if (i === editing) {
         return (
           <EditCard
+            question={card.question}
+            answer={card.answer}
             handleInput={this.handleInput}
             handleEditSubmit={this.handleEditSubmit}
             i={i}
-            question={card.question}
-            answer={card.answer}
             key={i}>
           </EditCard>
         )
@@ -60,9 +61,15 @@ export default class List extends React.Component {
         </ReadCard>
       )
     })
+    
 
     return (
       <ScrollView contentContainerStyle={styles.container}>
+        {
+          savedCards.length < 1 
+            ? <EmptyList navigation={this.props.navigation}></EmptyList> 
+            : ''
+        }
         {$cards}
       </ScrollView>
     )
