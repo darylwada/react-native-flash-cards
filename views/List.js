@@ -26,12 +26,9 @@ export default class List extends React.Component {
     this.setState({ editing: null })
   }
 
-  handleDeleteClick(i) {
-
-  }
-
   render() {
     const { editing } = this.state
+    const { handleDelete } = this.props.screenProps
     const $cards = this.props.screenProps.savedCards.map((card, i) => {
       if (i === editing) {
         return (
@@ -64,7 +61,7 @@ export default class List extends React.Component {
             <TouchableHighlight onPress={() => this.handleEditClick(i)} underlayColor="white">
               <Text style={styles.edit}>{'\uf044'}</Text>
             </TouchableHighlight>
-            <TouchableHighlight onPress={() => this.handleDeleteClick(i)} underlayColor="white">
+            <TouchableHighlight onPress={() => handleDelete(i)} underlayColor="white">
               <Text style={styles.delete}>{'\uf2ed'}</Text>
             </TouchableHighlight>
           </View>

@@ -37,6 +37,7 @@ export default class App extends React.Component {
     }
     this.handleSave = this.handleSave.bind(this)
     this.handleEditSubmit = this.handleEditSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
@@ -63,6 +64,14 @@ export default class App extends React.Component {
       if (index === editIndex) return editedCard
       return card
     })
+    AsyncStorage.setItem('savedCards', JSON.stringify(savedCards))
+    this.setState({ savedCards })
+  }
+
+  handleDelete(i) {
+    const savedCards = [...this.state.savedCards]
+    savedCards.splice(i, 1)
+    AsyncStorage.setItem('savedCards', JSON.stringify(savedCards))
     this.setState({ savedCards })
   }
 
@@ -74,7 +83,8 @@ export default class App extends React.Component {
         screenProps={{ 
           savedCards: this.state.savedCards, 
           handleSave: this.handleSave,
-          handleEditSubmit: this.handleEditSubmit
+          handleEditSubmit: this.handleEditSubmit,
+          handleDelete: this.handleDelete
         }} />
     )
   }
