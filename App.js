@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from './views/Form'
 import List from './views/List'
+import Practice from './views/Practice'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import { AsyncStorage } from 'react-native'
 import Expo, { Font } from 'expo'
@@ -9,6 +10,7 @@ const Navigator = createMaterialTopTabNavigator(
   {
     'New Card': { screen: Form },
     Cards: { screen: List },
+    Practice: { screen: Practice }
   },
   {
     tabBarOptions: {
