@@ -32,12 +32,14 @@ export default class Practice extends React.Component {
           {
             savedCards.map((card, i) => {
               return (
-                <View style={styles.card} key={i}>
-                  <Text style={styles.question}>{card.question}</Text>
-                  <TouchableHighlight onPress={() => this.handleClick(i)} underlayColor="white">
-                    <Text style={styles.show}>{'\uf35a Show Answer'}</Text>
-                  </TouchableHighlight>
-                  <Text style={styles.answer}>{show === i ? card.answer : ''}</Text>
+                <View style={styles.cardContainer} key={i}>
+                  <View style={styles.card}>
+                    <Text style={styles.question}>{card.question}</Text>
+                    <TouchableHighlight onPress={() => this.handleClick(i)} underlayColor="white">
+                      <Text style={styles.show}>{'\uf35a Show Answer'}</Text>
+                    </TouchableHighlight>
+                    <Text style={styles.answer}>{show === i ? card.answer : ''}</Text>
+                  </View>
                 </View>
               )
             })
@@ -55,15 +57,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgb(233, 236, 239)',
   },
+  cardContainer: {
+    backgroundColor: 'rgb(233, 236, 239)',
+    width: deviceWidth,
+    alignItems: 'center'
+  },
   card: {
     backgroundColor: 'white',
-    width: deviceWidth,
-    height: 100,
+    width: 300,
+    height: 250,
     marginTop: 20,
     shadowColor: 'black',
     shadowRadius: 2,
     shadowOpacity: 0.1,
-    justifyContent: 'flex-start'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   question: {
     marginTop: 2,
