@@ -12,6 +12,8 @@ export default class Practice extends React.Component {
   }
 
   handleClick(i) {
+    const { show } = this.state
+    if (i !== show) this.animatedValue.setValue(0)
     this.setState({ show: i }, () => this.flipCard())
   }
 
@@ -20,7 +22,7 @@ export default class Practice extends React.Component {
       this.animatedValue, 
       {
         toValue: this.value >= 90 ? 0 : 180,
-        duration: 800
+        duration: 600
       }
     ).start()
   }
