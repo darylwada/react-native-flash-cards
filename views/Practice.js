@@ -1,14 +1,17 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView, Text, Dimensions, TouchableHighlight, Animated } from 'react-native'
 import EmptyList from '../components/EmptyList'
+import ProgressBar from '../containers/ProgressBar'
 
 export default class Practice extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
-      show: null
+      show: null,
+      currentIndex: 0
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleScroll = this.handleScroll.bind(this)
   }
 
   handleClick(i) {
@@ -43,8 +46,14 @@ export default class Practice extends React.Component {
     })
   }
 
+  handleScroll(event) {
+    const xOffset = event.nativeEvent.contentOffset.x
+    if (xOffset % deviceWidth === 0) this.setState({ currentIndex: xOffset / deviceWidth })
+  }
+
   render() {
-    const { show } = this.state
+    console.log(this.state)
+    const { show, currentIndex } = this.state
     const { savedCards } = this.props.screenProps
     const frontAnimatedStyle = {
       transform: [
@@ -63,7 +72,13 @@ export default class Practice extends React.Component {
             ? <EmptyList navigation={this.props.navigation}></EmptyList> 
             : ''
         }
-        <ScrollView horizontal pagingEnabled>
+        <ProgressBar 
+          currentIndex={currentIndex} 
+          length={savedCards.length} />
+        <ScrollView 
+          horizontal 
+          pagingEnabled 
+          onScroll={this.handleScroll} >
           {
             savedCards.map((card, i) => {
               const $card = show === i
@@ -105,6 +120,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgb(233, 236, 239)',
+    alignItems: 'center'
   },
   cardContainer: {
     backgroundColor: 'rgb(233, 236, 239)',
