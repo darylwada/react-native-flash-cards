@@ -6,9 +6,11 @@ export default class Practice extends React.Component {
   constructor(props) {
     super(props)
     this.state = { 
-      show: null
+      show: null,
+      currentIndex: 0
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleScroll = this.handleScroll.bind(this)
   }
 
   handleClick(i) {
@@ -43,7 +45,13 @@ export default class Practice extends React.Component {
     })
   }
 
+  handleScroll(event) {
+    const xOffset = event.nativeEvent.contentOffset.x
+    if (xOffset % deviceWidth === 0) this.setState({ currentIndex: xOffset / deviceWidth })
+  }
+
   render() {
+    console.log(this.state)
     const { show } = this.state
     const { savedCards } = this.props.screenProps
     const frontAnimatedStyle = {
@@ -67,7 +75,11 @@ export default class Practice extends React.Component {
           <View style={styles.progress}>
           </View>
         </View>
-        <ScrollView horizontal pagingEnabled>
+        <ScrollView 
+          horizontal 
+          pagingEnabled 
+          onScroll={this.handleScroll} >
+          {/* scrollEventThrottle={1}> */}
           {
             savedCards.map((card, i) => {
               const $card = show === i
