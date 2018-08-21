@@ -52,8 +52,9 @@ export default class Practice extends React.Component {
 
   render() {
     console.log(this.state)
-    const { show } = this.state
+    const { show, currentIndex } = this.state
     const { savedCards } = this.props.screenProps
+    const progress = `${(currentIndex + 1) / savedCards.length * 100}%`
     const frontAnimatedStyle = {
       transform: [
         { rotateX: this.frontInterpolate }
@@ -72,14 +73,13 @@ export default class Practice extends React.Component {
             : ''
         }
         <View style={styles.scrollbar}>
-          <View style={styles.progress}>
+          <View style={[styles.progress, { width: progress }]}>
           </View>
         </View>
         <ScrollView 
           horizontal 
           pagingEnabled 
           onScroll={this.handleScroll} >
-          {/* scrollEventThrottle={1}> */}
           {
             savedCards.map((card, i) => {
               const $card = show === i
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray'
   },
   progress: {
-    width: '50%',
+    // width: '50%',
     height: '100%',
     backgroundColor: 'rgb(108, 209, 165)'
   }
