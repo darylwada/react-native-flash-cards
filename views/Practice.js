@@ -63,6 +63,10 @@ export default class Practice extends React.Component {
             ? <EmptyList navigation={this.props.navigation}></EmptyList> 
             : ''
         }
+        <View style={styles.scrollbar}>
+          <View style={styles.progress}>
+          </View>
+        </View>
         <ScrollView horizontal pagingEnabled>
           {
             savedCards.map((card, i) => {
@@ -105,6 +109,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgb(233, 236, 239)',
+    alignItems: 'center'
   },
   cardContainer: {
     backgroundColor: 'rgb(233, 236, 239)',
@@ -142,5 +147,16 @@ const styles = StyleSheet.create({
     fontFamily: 'awesome',
     marginRight: 10,
     color: 'rgb(108, 209, 165)'
+  },
+  scrollbar: {
+    marginTop: 20,
+    width: 300,
+    height: 20,
+    borderColor: 'gray'
+  },
+  progress: {
+    width: '50%',
+    height: '100%',
+    backgroundColor: 'rgb(108, 209, 165)'
   }
 })
