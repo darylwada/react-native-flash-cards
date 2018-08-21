@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView, Text, Dimensions, TouchableHighlight, Animated } from 'react-native'
 import EmptyList from '../components/EmptyList'
+import ProgressBar from '../containers/ProgressBar'
 
 export default class Practice extends React.Component {
   constructor(props) {
@@ -54,7 +55,6 @@ export default class Practice extends React.Component {
     console.log(this.state)
     const { show, currentIndex } = this.state
     const { savedCards } = this.props.screenProps
-    const progress = `${(currentIndex + 1) / savedCards.length * 100}%`
     const frontAnimatedStyle = {
       transform: [
         { rotateX: this.frontInterpolate }
@@ -72,10 +72,9 @@ export default class Practice extends React.Component {
             ? <EmptyList navigation={this.props.navigation}></EmptyList> 
             : ''
         }
-        <View style={styles.scrollbar}>
-          <View style={[styles.progress, { width: progress }]}>
-          </View>
-        </View>
+        <ProgressBar 
+          currentIndex={currentIndex} 
+          length={savedCards.length} />
         <ScrollView 
           horizontal 
           pagingEnabled 
@@ -159,16 +158,5 @@ const styles = StyleSheet.create({
     fontFamily: 'awesome',
     marginRight: 10,
     color: 'rgb(108, 209, 165)'
-  },
-  scrollbar: {
-    marginTop: 20,
-    width: 300,
-    height: 20,
-    borderColor: 'gray'
-  },
-  progress: {
-    // width: '50%',
-    height: '100%',
-    backgroundColor: 'rgb(108, 209, 165)'
   }
 })
