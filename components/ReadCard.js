@@ -34,13 +34,18 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   question: {
-    marginTop: 2,
-    fontSize: 20,
-    paddingHorizontal: 10
+    marginTop: 10,
+    fontSize: 18,
+    paddingHorizontal: 15
   },
   answer: {
     paddingVertical: 10,
-    paddingHorizontal: 15
+    paddingHorizontal: 20
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: 15
   },
   edit: {
     fontFamily: 'awesome',
@@ -51,9 +56,5 @@ const styles = StyleSheet.create({
     fontFamily: 'awesome',
     marginRight: 10,
     color: 'rgb(108, 209, 165)'
-  },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end'
   }
 })
