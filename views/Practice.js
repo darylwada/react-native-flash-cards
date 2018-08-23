@@ -52,7 +52,6 @@ export default class Practice extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     const { show, currentIndex } = this.state
     const { savedCards } = this.props.screenProps
     const frontAnimatedStyle = {

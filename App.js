@@ -26,7 +26,8 @@ const Navigator = createMaterialTopTabNavigator(
         height: 70,
         paddingTop: 30
       }
-    }
+    },
+    swipeEnabled: false
   }
 )
 
@@ -35,7 +36,20 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       loading: true,
-      savedCards: [{ question: 'hello?', answer: 'hi' }]
+      savedCards: [
+        {
+          question: 'What is a closure?',
+          answer: 'The combination of a function and the lexical environment in which is was declared.' 
+        },
+        {
+          question: 'What is the time complexity of a binary search?',
+          answer: 'O(log n)' 
+        },
+        {
+          question: 'What are the six falsy values in JavaScript?',
+          answer: "false, 0, '', null, undefined, NaN" 
+        },
+      ]
     }
     this.handleSave = this.handleSave.bind(this)
     this.handleEditSubmit = this.handleEditSubmit.bind(this)
@@ -43,11 +57,11 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    AsyncStorage
-      .getItem('savedCards')
-      .then(savedCards => {
-        if (savedCards) this.setState({ savedCards: JSON.parse(savedCards) })
-      })
+    // AsyncStorage
+    //   .getItem('savedCards')
+    //   .then(savedCards => {
+    //     if (savedCards) this.setState({ savedCards: JSON.parse(savedCards) })
+    //   })
     Font
       .loadAsync({
         'awesome': require('./assets/fonts/fontawesome.ttf')
@@ -78,7 +92,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     if (this.state.loading) return <Expo.AppLoading />
     return (
       <Navigator 

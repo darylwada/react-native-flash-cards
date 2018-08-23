@@ -1,20 +1,28 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableHighlight } from 'react-native'
+import Swipeout from 'react-native-swipeout'
 
-export default function EditCard({ question, answer, handleEditClick, handleDelete, i }) {
+export default function ReadCard({ question, answer, handleEditClick, handleDelete, i }) {
+  const swipeoutBtns = [
+    {
+      component: (
+        <View style={styles.delete}>
+          <Text style={styles.deleteText}>Delete</Text>
+        </View>
+      ),
+      onPress: () => handleDelete(i),
+    }
+  ]
   return (
-    <View style={styles.card}>
+    <Swipeout right={swipeoutBtns} autoClose={true} style={styles.card}>
       <Text style={styles.question}>{question}</Text>
       <Text style={styles.answer}>{answer}</Text>
       <View style={styles.buttons}>
         <TouchableHighlight onPress={() => handleEditClick(i)} underlayColor="white">
           <Text style={styles.edit}>{'\uf044'}</Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => handleDelete(i)} underlayColor="white">
-          <Text style={styles.delete}>{'\uf2ed'}</Text>
-        </TouchableHighlight>
       </View>
-    </View>
+    </Swipeout>
   )
 }
 
@@ -53,8 +61,12 @@ const styles = StyleSheet.create({
     color: 'rgb(108, 209, 165)'
   },
   delete: {
-    fontFamily: 'awesome',
-    marginRight: 10,
-    color: 'rgb(108, 209, 165)'
+    backgroundColor: 'rgb(255, 128, 128)', 
+    height: '100%',
+    justifyContent: 'center'
+  },
+  deleteText: {
+    color: 'white',
+    textAlign: 'center'
   }
 })
