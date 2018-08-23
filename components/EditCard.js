@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, TextInput, View, Button } from 'react-native'
+import { StyleSheet, TextInput, View, Text, TouchableHighlight } from 'react-native'
 
 export default function EditCard({ i, handleInput, handleEditSubmit, question, answer }) {
   return (
@@ -15,11 +15,9 @@ export default function EditCard({ i, handleInput, handleEditSubmit, question, a
         value={answer}
       />
       <View style={styles.button}>
-        <Button
-          onPress={() => handleEditSubmit(i)}
-          title="Save"
-          color="white"
-        />
+        <TouchableHighlight onPress={() => handleEditSubmit(i)}>
+          <Text style={styles.buttonText}>Save</Text>
+        </TouchableHighlight>
       </View>
     </View>
   )
@@ -41,26 +39,32 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   questionInput: {
-    marginTop: 2,
-    fontSize: 20,
-    paddingHorizontal: 10,
+    marginTop: 10,
+    fontSize: 18,
+    paddingHorizontal: 15,
     borderColor: 'rgb(211,211,211)', 
-    borderWidth: 1
+    borderBottomWidth: 1
   },
   answerInput: {
     marginTop: 2,
     paddingVertical: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
     borderColor: 'rgb(211,211,211)', 
-    borderWidth: 1
+    borderBottomWidth: 1
   },
   button: {
     marginTop: 20,
-    width: 60,
+    marginBottom: 10,
+    width: 50,
+    height: 30,
     marginLeft: '50%',
     transform: [{ translateX: -30 }],
     justifyContent: 'center',
     backgroundColor: 'rgb(23,41,61)',
     borderRadius: 5
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: 'white'
   }
 })
