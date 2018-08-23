@@ -24,9 +24,13 @@ const styles = StyleSheet.create({
     width: 300,
     minHeight: 100,
     marginTop: 20,
-    shadowColor: 'black',
-    shadowRadius: 2,
+    shadowColor: 'gray',
+    shadowRadius: 5,
     shadowOpacity: 0.1,
+    shadowOffset: {
+      width: -3,
+      height: 3
+    },
     justifyContent: 'flex-start'
   },
   question: {
