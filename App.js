@@ -1,6 +1,6 @@
 import React from 'react'
-import Form from './views/Form'
-import List from './views/List'
+import NewCard from './views/NewCard'
+import Cards from './views/Cards'
 import Practice from './views/Practice'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import { AsyncStorage } from 'react-native'
@@ -8,8 +8,8 @@ import Expo, { Font } from 'expo'
 
 const Navigator = createMaterialTopTabNavigator(
   {
-    'New Card': { screen: Form },
-    Cards: { screen: List },
+    'New Card': { screen: NewCard },
+    Cards: { screen: Cards },
     Practice: { screen: Practice }
   },
   {
@@ -57,11 +57,11 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // AsyncStorage
-    //   .getItem('savedCards')
-    //   .then(savedCards => {
-    //     if (savedCards) this.setState({ savedCards: JSON.parse(savedCards) })
-    //   })
+    AsyncStorage
+      .getItem('savedCards')
+      .then(savedCards => {
+        if (savedCards) this.setState({ savedCards: JSON.parse(savedCards) })
+      })
     Font
       .loadAsync({
         'awesome': require('./assets/fonts/fontawesome.ttf')

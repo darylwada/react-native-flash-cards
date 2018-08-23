@@ -62,7 +62,6 @@ export default class List extends React.Component {
       )
     })
     
-
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <KeyboardAvoidingView behavior="padding">
