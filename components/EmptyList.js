@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
 
 export default function EmptyList({ navigation }) {
   return (
@@ -7,11 +7,9 @@ export default function EmptyList({ navigation }) {
       <View style={styles.card}>
         <Text style={styles.header}>You have no cards!</Text>
         <View style={styles.button}>
-          <Button
-            onPress={() => navigation.navigate('New Card')}
-            title="Make One"
-            color="white"
-          />
+          <TouchableHighlight onPress={() => navigation.navigate('New Card')}>
+            <Text style={styles.buttonText}>Make One</Text>
+          </TouchableHighlight>
         </View>
       </View>
     </View>
@@ -43,8 +41,15 @@ const styles = StyleSheet.create({
     marginBottom: 25
   },
   button: {
+    justifyContent: 'center',
     marginTop: 20,
+    width: 75,
+    height: 30,
     backgroundColor: 'rgb(23,41,61)',
     borderRadius: 5
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: 'white'
   }
 })
