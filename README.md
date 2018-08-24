@@ -1,7 +1,7 @@
 # Quiz Me Mobile
 A mobile flash card app for people who learn by self-quizzing.
 
-#### [Try it on a simulator](https://snack.expo.io/@git/github.com/darylwada/react-native-flash-cards)
+#### [Simulator Demo](https://snack.expo.io/@git/github.com/darylwada/react-native-flash-cards)
 
 ### Create, read, update, and delete flash cards.
 ![rn-fc-crud](https://user-images.githubusercontent.com/33441299/44600844-70d57780-a78f-11e8-8e07-1371bc573bed.gif)
