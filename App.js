@@ -1,6 +1,6 @@
 import React from 'react'
-import Form from './views/Form'
-import List from './views/List'
+import NewCard from './views/NewCard'
+import Cards from './views/Cards'
 import Practice from './views/Practice'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import { AsyncStorage } from 'react-native'
@@ -8,8 +8,8 @@ import Expo, { Font } from 'expo'
 
 const Navigator = createMaterialTopTabNavigator(
   {
-    'New Card': { screen: Form },
-    Cards: { screen: List },
+    'New Card': { screen: NewCard },
+    Cards: { screen: Cards },
     Practice: { screen: Practice }
   },
   {
@@ -26,7 +26,8 @@ const Navigator = createMaterialTopTabNavigator(
         height: 70,
         paddingTop: 30
       }
-    }
+    },
+    swipeEnabled: false
   }
 )
 
@@ -35,7 +36,20 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       loading: true,
-      savedCards: [{ question: 'hello?', answer: 'hi' }]
+      savedCards: [
+        {
+          question: 'What is a closure?',
+          answer: 'The combination of a function and the lexical environment in which is was declared.' 
+        },
+        {
+          question: 'What is the time complexity of a binary search?',
+          answer: 'O(log n)' 
+        },
+        {
+          question: 'What are the six falsy values in JavaScript?',
+          answer: "false, 0, '', null, undefined, NaN" 
+        },
+      ]
     }
     this.handleSave = this.handleSave.bind(this)
     this.handleEditSubmit = this.handleEditSubmit.bind(this)
@@ -78,7 +92,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     if (this.state.loading) return <Expo.AppLoading />
     return (
       <Navigator 

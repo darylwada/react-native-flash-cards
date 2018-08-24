@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet, ScrollView, KeyboardAvoidingView, View } from 'react-native'
 import EditCard from '../components/EditCard'
 import ReadCard from '../components/ReadCard'
 import EmptyList from '../components/EmptyList'
@@ -62,15 +62,17 @@ export default class List extends React.Component {
       )
     })
     
-
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {
-          savedCards.length < 1 
-            ? <EmptyList navigation={this.props.navigation}></EmptyList> 
-            : ''
-        }
-        {$cards}
+        <KeyboardAvoidingView behavior="padding">
+          {
+            savedCards.length < 1 
+              ? <EmptyList navigation={this.props.navigation}></EmptyList> 
+              : ''
+          }
+          {$cards}
+          <View style={{ height: 60 }} />
+        </KeyboardAvoidingView>
       </ScrollView>
     )
   }

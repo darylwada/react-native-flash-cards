@@ -16,6 +16,7 @@ export default class Form extends React.Component {
     const newCard = { question, answer}
     this.props.screenProps.handleSave(newCard)
     this.props.navigation.navigate('Cards')
+    this.setState({ question: '', answer: '' })
   }
 
   render() {
@@ -25,13 +26,13 @@ export default class Form extends React.Component {
           <Text style={styles.header}>Create a Flash Card</Text>
           <Text style={styles.label}>Question</Text>
           <TextInput 
-            style={{height: 30, width: 250, borderColor: 'gray', borderWidth: 1}}
+            style={styles.input}
             onChangeText={question => this.setState({ question })}
             value={this.state.question}
           />
           <Text style={styles.label}>Answer</Text>
           <TextInput 
-            style={{height: 30, width: 250, borderColor: 'gray', borderWidth: 1}}
+            style={styles.input}
             onChangeText={answer => this.setState({ answer })}
             value={this.state.answer}
           />
@@ -59,14 +60,24 @@ const styles = StyleSheet.create({
     width: 300,
     height: 250,
     marginTop: 20,
-    shadowColor: 'black',
-    shadowRadius: 2,
+    shadowColor: 'gray',
+    shadowRadius: 5,
     shadowOpacity: 0.1,
+    shadowOffset: {
+      width: -3,
+      height: 3
+    },
     justifyContent: 'center',
     alignItems: 'center'
   },
   header: {
     marginBottom: 25
+  },
+  input: {
+    height: 30, 
+    width: 250, 
+    borderColor: 'rgb(211,211,211)', 
+    borderBottomWidth: 1
   },
   label: {
     marginTop: 10,
