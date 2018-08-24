@@ -68,7 +68,7 @@ export default class List extends React.Component {
           {
             savedCards.length < 1 
               ? <EmptyList navigation={this.props.navigation}></EmptyList> 
-              : ''
+              : null
           }
           {$cards}
           <View style={{ height: 60 }} />
