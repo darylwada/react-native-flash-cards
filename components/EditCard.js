@@ -5,12 +5,14 @@ export default function EditCard({ i, handleInput, handleEditSubmit, question, a
   return (
     <View style={styles.card}>
       <TextInput 
+        underlineColorAndroid='transparent'
         multiline
         style={styles.questionInput}
         onChangeText={question => handleInput({ question })}
         value={question}
       />
       <TextInput 
+        underlineColorAndroid='transparent'
         multiline
         style={styles.answerInput}
         onChangeText={answer => handleInput({ answer })}

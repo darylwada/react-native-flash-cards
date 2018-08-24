@@ -26,12 +26,14 @@ export default class Form extends React.Component {
           <Text style={styles.header}>Create a Flash Card</Text>
           <Text style={styles.label}>Question</Text>
           <TextInput 
+            underlineColorAndroid='transparent'
             style={styles.input}
             onChangeText={question => this.setState({ question })}
             value={this.state.question}
           />
           <Text style={styles.label}>Answer</Text>
           <TextInput 
+            underlineColorAndroid='transparent'
             style={styles.input}
             onChangeText={answer => this.setState({ answer })}
             value={this.state.answer}
