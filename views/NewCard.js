@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableHighlight } from 'react-native'
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -39,11 +39,9 @@ export default class Form extends React.Component {
             value={this.state.answer}
           />
           <View style={styles.button}>
-            <Button
-              onPress={this.handleSave}
-              title="Save"
-              color="white"
-            />
+            <TouchableHighlight onPress={this.handleSave}>
+              <Text style={styles.buttonText}>Save</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -87,8 +85,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25
   },
   button: {
+    justifyContent: 'center',
     marginTop: 20,
+    width: 50,
+    height: 30,
     backgroundColor: 'rgb(23,41,61)',
     borderRadius: 5
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: 'white'
   }
 })

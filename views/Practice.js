@@ -69,11 +69,8 @@ export default class Practice extends React.Component {
         {
           savedCards.length < 1 
             ? <EmptyList navigation={this.props.navigation}></EmptyList> 
-            : null
+            : <ProgressBar currentIndex={currentIndex} length={savedCards.length} />
         }
-        <ProgressBar 
-          currentIndex={currentIndex} 
-          length={savedCards.length} />
         <ScrollView 
           horizontal 
           pagingEnabled 
