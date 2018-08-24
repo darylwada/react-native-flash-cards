@@ -17,7 +17,7 @@ export default function ReadCard({ question, answer, handleEditClick, handleDele
     <Swipeout right={swipeoutBtns} autoClose={true} style={styles.card}>
       <Text style={styles.question}>{question}</Text>
       <Text style={styles.answer}>{answer}</Text>
-      <View style={styles.buttons}>
+      <View style={styles.buttonRow}>
         <TouchableHighlight onPress={() => handleEditClick(i)} underlayColor="white">
           <Text style={styles.edit}>{'\uf044'}</Text>
         </TouchableHighlight>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20
   },
-  buttons: {
+  buttonRow: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginBottom: 15
