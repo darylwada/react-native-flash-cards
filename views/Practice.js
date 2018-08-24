@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, ScrollView, Text, Dimensions, TouchableHighlight, Animated } from 'react-native'
+import { StyleSheet, View, ScrollView, Text, Dimensions, TouchableWithoutFeedback, Animated } from 'react-native'
 import EmptyList from '../components/EmptyList'
 import ProgressBar from '../containers/ProgressBar'
 
@@ -81,29 +81,30 @@ export default class Practice extends React.Component {
           {
             savedCards.map((card, i) => {
               const $card = show === i
-                ? <View>
-                    <Animated.View style={[styles.card, frontAnimatedStyle]}>
+                ? <TouchableWithoutFeedback onPress={() => this.handleClick(i)}>
+                    <View>
+                      <Animated.View style={[styles.card, frontAnimatedStyle]}>
+                        <Text style={styles.question}>
+                          {card.question}
+                        </Text>
+                      </Animated.View>
+                      <Animated.View style={[backAnimatedStyle, styles.card, styles.cardBack]}>
+                        <Text style={styles.answer}>
+                          {card.answer}
+                        </Text>
+                      </Animated.View>
+                    </View>
+                  </TouchableWithoutFeedback>
+                : <TouchableWithoutFeedback onPress={() => this.handleClick(i)}>
+                    <View style={styles.card}>
                       <Text style={styles.question}>
                         {card.question}
                       </Text>
-                    </Animated.View>
-                    <Animated.View style={[backAnimatedStyle, styles.card, styles.cardBack]}>
-                      <Text style={styles.answer}>
-                        {card.answer}
-                      </Text>
-                    </Animated.View>
-                  </View>
-                : <View style={styles.card}>
-                    <Text style={styles.question}>
-                      {card.question}
-                    </Text>
-                  </View>
+                    </View>
+                  </TouchableWithoutFeedback>
               return (
                 <View style={styles.cardContainer} key={i}>
                   {$card}
-                  <TouchableHighlight onPress={() => this.handleClick(i)} underlayColor="white">
-                    <Text style={styles.show}>{'\uf35a Show Answer'}</Text>
-                  </TouchableHighlight>
                 </View>
               )
             })

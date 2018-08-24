@@ -5,18 +5,20 @@ export default function EditCard({ i, handleInput, handleEditSubmit, question, a
   return (
     <View style={styles.card}>
       <TextInput 
+        multiline
         style={styles.questionInput}
         onChangeText={question => handleInput({ question })}
         value={question}
       />
       <TextInput 
+        multiline
         style={styles.answerInput}
         onChangeText={answer => handleInput({ answer })}
         value={answer}
       />
-      <View style={styles.button}>
+      <View style={styles.buttonRow}>
         <TouchableHighlight onPress={() => handleEditSubmit(i)}>
-          <Text style={styles.buttonText}>Save</Text>
+          <Text style={styles.save}>{'\uf058'}</Text>
         </TouchableHighlight>
       </View>
     </View>
@@ -42,29 +44,27 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
     paddingHorizontal: 15,
+    paddingTop: 0,
     borderColor: 'rgb(211,211,211)', 
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    maxHeight: 80
   },
   answerInput: {
-    marginTop: 2,
-    paddingVertical: 10,
+    paddingBottom: 9,
+    paddingTop: 9,
     paddingHorizontal: 20,
     borderColor: 'rgb(211,211,211)', 
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    maxHeight: 80
   },
-  button: {
-    marginTop: 20,
-    marginBottom: 10,
-    width: 50,
-    height: 30,
-    marginLeft: '50%',
-    transform: [{ translateX: -30 }],
-    justifyContent: 'center',
-    backgroundColor: 'rgb(23,41,61)',
-    borderRadius: 5
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: 15
   },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white'
+  save: {
+    fontFamily: 'awesome',
+    marginRight: 10,
+    color: 'rgb(108, 209, 165)'
   }
 })
